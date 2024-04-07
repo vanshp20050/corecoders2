@@ -578,3 +578,162 @@ Food *addFood(string food)
     Food_List.push_back(*newFood);
     return newFood;
 }
+
+void removeFood()
+{
+    cout << endl
+         << "Enter food name to remove: " << endl;
+    string tmp;
+    getline(cin, tmp);
+    properName(tmp);
+
+    int tempbefore = Food_List.size();
+    for (int j = 0; j < Food_List.size(); j++)
+    {
+        if (tmp == Food_List[j].name)
+            Food_List.erase(Food_List.begin() + j);
+    }
+
+    while (Food_List.size() == tempbefore)
+    {
+
+        cout << endl
+             << "Food not removed as string don't match." << endl;
+        cout << "Here is the list of closest match: " << endl;
+
+        vector<string> v(Food_List.size());
+        for (int b = 0; b < Food_List.size(); b++)
+        {
+            v[b] = Food_List[b].name;
+        }
+
+        vector<int> closest5 = closestString(v, tmp);
+
+        for (int b = 0; b < closest5.size(); b++)
+        {
+            cout << Food_List[closest5[b]].name << endl;
+        }
+        int choice;
+        cout << "Enter the number corresponding to the most appropriate" << endl
+             << "Enter any other number to discard result" << endl;
+        cin >> choice;
+        cout << endl;
+        cin.ignore();
+
+        if (choice <= closest5.size() && choice > 0)
+        {
+            Food_List.erase(Food_List.begin() + closest5[choice - 1]);
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
+void removeMeal()
+{
+    cout << endl
+         << "Enter meal name to remove: " << endl;
+    string tmp;
+    getline(cin, tmp);
+    properName(tmp);
+
+    int tempbefore = Meal_List.size();
+    for (int j = 0; j < Meal_List.size(); j++)
+    {
+        if (tmp == Meal_List[j].name)
+            Meal_List.erase(Meal_List.begin() + j);
+    }
+
+    while (Meal_List.size() == tempbefore)
+    {
+
+        cout << endl
+             << "Meal not removed as string don't match." << endl;
+        cout << "Here is the list of closest match: " << endl;
+
+        vector<string> v(Meal_List.size());
+        for (int b = 0; b < Meal_List.size(); b++)
+        {
+            v[b] = Meal_List[b].name;
+        }
+
+        vector<int> closest5 = closestString(v, tmp);
+
+        for (int b = 0; b < closest5.size(); b++)
+        {
+            cout << Meal_List[closest5[b]].name << endl;
+        }
+
+        int choice;
+        cout << "Enter the number corresponding to the most appropriate" << endl
+             << "Enter any other number to discard result" << endl;
+
+        cin >> choice;
+        cout << endl;
+        cin.ignore();
+
+        if (choice <= closest5.size() && choice > 0)
+        {
+            Meal_List.erase(Meal_List.begin() + closest5[choice - 1]);
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
+void removeIngredient()
+{
+    cout << endl
+         << "Enter ingredient name to remove: " << endl;
+    string tmp;
+    getline(cin, tmp);
+    properName(tmp);
+
+    int tempbefore = Ingredient_List.size();
+    for (int j = 0; j < Ingredient_List.size(); j++)
+    {
+        if (tmp == Ingredient_List[j].name)
+            Ingredient_List.erase(Ingredient_List.begin() + j);
+    }
+
+    while (Ingredient_List.size() == tempbefore)
+    {
+
+        cout << endl
+             << "Ingredient not removed as string don't match." << endl;
+        cout << "Here is the list of closest match: " << endl;
+
+        vector<string> v(Ingredient_List.size());
+        for (int b = 0; b < Ingredient_List.size(); b++)
+        {
+            v[b] = Ingredient_List[b].name;
+        }
+
+        vector<int> closest5 = closestString(v, tmp);
+
+        for (int b = 0; b < closest5.size(); b++)
+        {
+            cout << Ingredient_List[closest5[b]].name << endl;
+        }
+
+        int choice;
+        cout << "Enter the number corresponding to the most appropriate" << endl
+             << "Enter any other number to discard result" << endl;
+        cin >> choice;
+        cout << endl;
+        cin.ignore();
+
+        if (choice <= closest5.size() && choice > 0)
+        {
+            Ingredient_List.erase(Ingredient_List.begin() + closest5[choice - 1]);
+        }
+        else
+        {
+            break;
+        }
+    }
+}
