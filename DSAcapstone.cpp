@@ -360,3 +360,144 @@ void displayMealList()
         cout << i + 1 << " : " << Meal_List[i].name << endl;
     }
 }
+
+Ingredient *searchIngredient(string Ingredient)
+{
+    for (int i = 0; i < Ingredient_List.size(); ++i)
+    {
+        if (Ingredient_List[i].name == Ingredient)
+        {
+            return &Ingredient_List[i];
+        }
+    }
+
+    vector<string> v(Ingredient_List.size());
+    for (int b = 0; b < Ingredient_List.size(); b++)
+    {
+        v[b] = Ingredient_List[b].name;
+    }
+    vector<int> closest5 = closestString(v, Ingredient);
+
+    cout << endl
+         << "We couldn't find an exact match" << endl
+         << "Closest " << closest5.size() << " searches are:" << endl;
+    for (int b = 0; b < closest5.size(); b++)
+    {
+        cout << b + 1 << ":" << Ingredient_List[closest5[b]].name << endl;
+    }
+    int choice;
+    cout << endl
+         << "Enter the number corresponding to the most appropriate" << endl
+         << "Enter 0 to add above entered ingredient to list" << endl
+         << "Enter any other number to discard result" << endl;
+    cin >> choice;
+    cout << endl;
+    cin.ignore();
+
+    if (choice == 0)
+    {
+        return addIngredient(Ingredient);
+    }
+    if (choice <= closest5.size() && choice > 0)
+    {
+        return &Ingredient_List[closest5[choice - 1]];
+    }
+    return nullptr;
+}
+
+Meal *searchMeal(string Meal)
+{
+    for (int i = 0; i < Meal_List.size(); ++i)
+    {
+        if (Meal_List[i].name == Meal)
+        {
+            return &Meal_List[i];
+        }
+    }
+
+    vector<string> v(Meal_List.size());
+    for (int b = 0; b < Meal_List.size(); b++)
+    {
+        v[b] = Meal_List[b].name;
+    }
+    vector<int> closest5 = closestString(v, Meal);
+
+    cout << endl
+         << "We couldn't find an exact match" << endl
+         << "Closest " << closest5.size() << " searches are:" << endl;
+    for (int b = 0; b < closest5.size(); b++)
+    {
+        cout << b + 1 << ":" << Meal_List[closest5[b]].name << endl;
+    }
+
+    int choice;
+    cout << endl
+         << "Enter the number corresponding to the most appropriate" << endl
+         << "Enter 0 to add above entered ingredient to list" << endl
+         << "Enter any other number to discard result" << endl;
+
+    cin >> choice;
+    cout << endl;
+    cin.ignore();
+
+    if (choice == 0)
+    {
+        return addMeal(Meal);
+    }
+
+    if (choice <= closest5.size() && choice > 0)
+    {
+        return &Meal_List[closest5[choice - 1]];
+    }
+    return nullptr;
+}
+
+Food *searchFood(string food)
+{
+    properName(food);
+    for (int i = 0; i < Food_List.size(); ++i)
+    {
+        if (Food_List[i].name == food)
+        {
+            return &Food_List[i];
+        }
+    }
+
+    vector<string> v(Food_List.size());
+    for (int b = 0; b < Food_List.size(); b++)
+    {
+        v[b] = Food_List[b].name;
+    }
+    vector<int> closest5 = closestString(v, food);
+
+    cout << endl
+         << "We couldn't find an exact match" << endl
+         << "Closest " << closest5.size() << " searches are:" << endl;
+
+    for (int b = 0; b < closest5.size(); b++)
+    {
+        cout << b + 1 << ":" << Food_List[closest5[b]].name << endl;
+    }
+
+    int choice;
+    cout << endl
+         << "Enter the number corresponding to the most appropriate" << endl
+         << "Enter 0 to add above entered ingredient to list" << endl
+         << "Enter any other number to discard result" << endl;
+
+    cin >> choice;
+    cout << endl;
+    cin.ignore();
+
+    if (choice == 0)
+    {
+        return addFood(food);
+    }
+
+    if (choice <= closest5.size() && choice > 0)
+    {
+        return &Food_List[closest5[choice - 1]];
+    }
+    return nullptr;
+}
+
