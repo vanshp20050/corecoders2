@@ -318,3 +318,45 @@ vector<int> closestString(vector<string> l, string search)
 
     return ans;
 }
+
+void displayIngredientList()
+{
+    if (Ingredient_List.empty())
+    {
+        cout << "There are no ingredients in the list" << endl;
+        return;
+    }
+    cout << "Ingredient List:" << endl;
+    for (int i = 0; i < Ingredient_List.size(); ++i)
+    {
+        cout << i + 1 << " : " << Ingredient_List[i].name << endl;
+    }
+}
+
+void displayFoodList()
+{
+    if (Food_List.empty())
+    {
+        cout << "There are no foods in the list" << endl;
+        return;
+    }
+    cout << "Food List:" << endl;
+    for (int i = 0; i < Food_List.size(); ++i)
+    {
+        cout << i + 1 << " : " << Food_List[i].name << endl;
+    }
+}
+
+void displayMealList()
+{
+    if (Meal_List.empty())
+    {
+        cout << "There are no meals in the list" << endl;
+        return;
+    }
+    cout << "Meal List:" << endl;
+    for (int i = 0; i < Meal_List.size(); ++i)
+    {
+        cout << i + 1 << " : " << Meal_List[i].name << endl;
+    }
+}
