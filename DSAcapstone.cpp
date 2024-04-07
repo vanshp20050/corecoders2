@@ -49,12 +49,14 @@ public:
     string name;
 };
 
+//contains name of the food and the recipe
+
 class Food
 {
 public:
     string name;
     vector<pair<Ingredient, int>> Recipe;
-
+//displays the recipe of the food 
     void displayRecipe()
     {
         if (Recipe.size() == 0)
@@ -66,7 +68,7 @@ public:
             cout << Recipe[i].first.name << " : " << Recipe[i].second << endl;
         }
     }
-
+//add or remove ingredient 
     void modifyFood()
     {
         int choice = 0;
@@ -134,7 +136,7 @@ public:
         }
     }
 };
-
+//contains a list of food
 class Meal
 {
 public:
@@ -152,7 +154,7 @@ public:
             cout << meal[i].name << endl;
         }
     }
-
+//adds or removes food from a meal
     void modifyMeal()
     {
         int choice = 0;
