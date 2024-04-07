@@ -249,3 +249,72 @@ void properName(string &name)
         }
     }
 }
+
+
+vector<int> closestString(vector<string> l, string search)
+{
+    vector<int> ans(min(5, (int)l.size()), -1);       // Stores position of each of the closest strings
+    vector<int> char_diff(min(5, (int)l.size()), 26); // Stores the difference of charecter at the position where it occurs
+    vector<int> char_pos(min(5, (int)l.size()), 0);   // Stores the position at which the strings differ
+
+    for (int i = 0; i < l.size(); i++)
+    {
+        int pos, diff;
+        for (int j = 0; j < min(l[i].length(), search.length()); j++)
+        {
+            if (l[i][j] != search[j])
+            {
+                pos = j;
+                diff = abs(l[i][j] - search[j]);
+                break;
+            }
+        }
+
+        int max_diff = 0;
+        int max_diff_pos;
+
+        // Deciding whether to store the current position in the answer. If yes, storing it in place of the worst one.
+        for (int k = 0; k < char_pos.size(); k++)
+        {
+            if (char_pos[k] == *min_element(char_pos.begin(), char_pos.end()) && char_diff[k] > max_diff)
+            {
+                max_diff = char_diff[k];
+                max_diff_pos = k;
+            }
+        }
+
+        if (pos == *min_element(char_pos.begin(), char_pos.end()))
+        {
+            if (diff < max_diff)
+            {
+                char_diff[max_diff_pos] = diff;
+                char_pos[max_diff_pos] = pos;
+                ans[max_diff_pos] = i;
+                continue;
+            }
+        }
+
+        if (pos > *min_element(char_pos.begin(), char_pos.end()))
+        {
+            char_diff[max_diff_pos] = diff;
+            char_pos[max_diff_pos] = pos;
+            ans[max_diff_pos] = i;
+            continue;
+        }
+    }
+
+    // Sorting the answer with respect to the difference in charecter position
+    for (int i = 0; i < char_pos.size(); i++)
+    {
+        for (int j = i + 1; j < char_pos.size(); j++)
+        {
+            if (char_pos[i] < char_pos[j])
+            {
+                swap(char_pos[i], char_pos[j]);
+                swap(ans[i], ans[j]);
+            }
+        }
+    }
+
+    return ans;
+}
