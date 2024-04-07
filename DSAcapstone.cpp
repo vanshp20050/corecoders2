@@ -737,3 +737,69 @@ void removeIngredient()
         }
     }
 }
+
+void displaySpecificMeal()
+{
+
+    string tmp;
+    cout << endl
+         << "Enter name of the meal to be displayed" << endl;
+    getline(cin, tmp);
+    properName(tmp);
+
+    displayLine();
+
+    Meal *newmeal = searchMeal(tmp);
+
+    if (newmeal != nullptr)
+    {
+        newmeal->displayFood();
+        int cho;
+        cout << endl
+             << "Enter 1 to modify else enter any other number to quit" << endl;
+        cin >> cho;
+        if (cho == 1)
+        {
+            newmeal->modifyMeal();
+        }
+    }
+    else
+    {
+        cout << endl
+             << "No such meal found" << endl;
+    }
+    displayLine();
+}
+
+void displaySpecificRecipe()
+{
+    string tmp;
+    cout << endl
+         << "Enter name of the Food whose recipie you want to display" << endl;
+    getline(cin, tmp);
+    properName(tmp);
+
+    displayLine();
+
+    Food *newfood = searchFood(tmp);
+
+    if (newfood != nullptr)
+    {
+        newfood->displayRecipe();
+        int cho;
+        cout << endl
+             << "Enter 1 to modify else enter any other number to quit" << endl;
+        cin >> cho;
+        if (cho == 1)
+        {
+            newfood->modifyFood();
+        }
+    }
+    else
+    {
+        cout << endl
+             << "No such food found" << endl;
+    }
+
+    displayLine();
+}
