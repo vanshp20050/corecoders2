@@ -803,3 +803,89 @@ void displaySpecificRecipe()
 
     displayLine();
 }
+
+int main()
+{
+    while (true)
+    {
+        int choice = 0;
+
+        displayLine();
+
+        cout << "Enter 1 to add Ingredient to the Ingredient List" << endl;
+        cout << "Enter 2 to add Food to the Food List" << endl;
+        cout << "Enter 3 to add Meal to the Meal List" << endl;
+        cout << "Enter 4 to remove Food" << endl;
+        cout << "Enter 5 to remove Meal" << endl;
+        cout << "Enter 6 to remove Ingredient" << endl;
+        cout << "Enter 7 to display Ingredient List" << endl;
+        cout << "Enter 8 to display Food List" << endl;
+        cout << "Enter 9 to display Meal List" << endl;
+        cout << "Enter 10 to display Specific Meal" << endl;
+        cout << "Enter 11 to display Specific Recipe" << endl;
+        cout << "Enter any other number to exit" << endl;
+
+        cin >> choice;
+        cout << endl;
+        cin.ignore();
+
+        switch (choice)
+        {
+        case 1:
+        {
+            string new_Ingredient;
+            cout << "Enter name of Ingredient" << endl;
+            getline(cin, new_Ingredient);
+            properName(new_Ingredient);
+            addIngredient(new_Ingredient);
+            break;
+        }
+        case 2:
+        {
+            string new_food;
+            cout << "Enter name of Food" << endl;
+            getline(cin, new_food);
+            properName(new_food);
+            addFood(new_food);
+            break;
+        }
+        case 3:
+        {
+            string new_meal;
+            cout << "Enter name of Meal" << endl;
+            getline(cin, new_meal);
+            properName(new_meal);
+            addMeal(new_meal);
+            break;
+        }
+        case 4:
+            removeFood();
+            break;
+        case 5:
+            removeMeal();
+            break;
+        case 6:
+            removeIngredient();
+        case 7:
+            displayIngredientList();
+            break;
+        case 8:
+            displayFoodList();
+            break;
+        case 9:
+            displayMealList();
+            break;
+        case 10:
+            displaySpecificMeal();
+            break;
+        case 11:
+            displaySpecificRecipe();
+            break;
+        default:
+            cin.ignore();
+            return 0;
+        }
+    }
+    cin.ignore();
+    return 0;
+}
