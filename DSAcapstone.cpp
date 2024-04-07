@@ -501,3 +501,80 @@ Food *searchFood(string food)
     return nullptr;
 }
 
+Ingredient *addIngredient(string ingre)
+{
+    properName(ingre);
+    Ingredient *newIngredient = new Ingredient;
+    newIngredient->name = ingre;
+    Ingredient_List.push_back(*newIngredient);
+    return newIngredient;
+}
+
+Meal *addMeal(string meal)
+{
+    properName(meal);
+    Meal *newMeal = new Meal;
+    newMeal->name = meal;
+    cout << "Enter foods to add to the meal (enter 'done' to finish):" << endl;
+    string foodName;
+
+    while (true)
+    {
+        cout << endl
+             << "Food name: ";
+        getline(cin, foodName);
+
+        properName(foodName);
+        if (foodName == "Done")
+        {
+            break;
+        }
+
+        Food *newFood = searchFood(foodName);
+
+        newMeal->meal.push_back(*newFood);
+    }
+
+    Meal_List.push_back(*newMeal);
+
+    return newMeal;
+}
+
+Food *addFood(string food)
+{
+    properName(food);
+    Food *newFood = new Food;
+    newFood->name = food;
+
+    cout << "Enter ingredients for the recipe (enter 'done' to finish):" << endl;
+    while (true)
+    {
+        string ingredientName;
+        int quantity;
+        cout << endl
+             << "Ingredient name: ";
+        getline(cin, ingredientName);
+        properName(ingredientName);
+
+        if (ingredientName == "Done")
+        {
+            break;
+        }
+
+        Ingredient *newIngredient = searchIngredient(ingredientName);
+
+        if (newIngredient == nullptr)
+        {
+            continue;
+        }
+
+        cout << "Quantity(in g): ";
+        cin >> quantity;
+        cin.ignore();
+
+        newFood->Recipe.push_back({*newIngredient, quantity});
+    }
+
+    Food_List.push_back(*newFood);
+    return newFood;
+}
